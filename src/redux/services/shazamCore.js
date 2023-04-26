@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-
-
   
 //   fetch('https://shazam-core.p.rapidapi.com/v1/charts/world', options)
 //     .then(response => response.json())
@@ -20,10 +18,19 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
         }),
         endpoints: (builder) => ({
             getTopCharts: builder.query({ query: () => '/charts/world'}),
+
+            getSongDetails: builder.query({ query: ({ songid }) =>
+            `/tracks/details?track_id=${songid}`}),
+
+            getSongRelated: builder.query({ query: ({songid }) =>
+            `/tracks/details?track_id=${songid}`}),
+
         }),
     });
 
 
     export const {
         useGetTopChartsQuery,
-    } = shazamCoreApi
+        useGetSongDetailsQuery,
+        useGetSongRelated,
+    } = shazamCoreApi;
